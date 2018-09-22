@@ -1,0 +1,25 @@
+(SRCTools Version 3.1.1)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                                                         ;r2 will be for quotient
+                                                                         ;r3 will be for remainder
+                                                                         
+00000000  0000000000  2fc00010                la r31, loop               ;loop jump location
+00000004  0000000004  2f800028                la r30, remain             ;remainder jump location
+                                                                         
+00000008  0000000008  280003db                la r0, 987                 ;dividend
+0000000c  0000000012  28400039                la r1, 57                  ;divisor
+                                                                         
+                                                                         
+                                                                         
+00000010  0000000016  70001000  loop:         sub r0, r0, r1             ;subtract divisor from dividend
+00000014  0000000020  403c0002                brzr r30, r0               ;jump if there is no remainder
+00000018  0000000024  68840001                addi r2, r2, 1             ;increment quotient
+0000001c  0000000028  403e0004                brpl r31, r0               ;keep subtracting until number is negative
+                                                                         
+00000020  0000000032  6885ffff                addi r2, r2, -1            
+00000024  0000000036  60001000                add r0, r0, r1             
+00000028  0000000040            remain:                                  
+
+--- Symbol Table ---
+loop: 16
+remain: 40

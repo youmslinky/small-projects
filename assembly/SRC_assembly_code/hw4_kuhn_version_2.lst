@@ -1,0 +1,113 @@
+(SRCTools Version 3.1.1)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                                                         ;	date:2/23/2017
+                                                                         ;
+                                                                         ;
+                                                                         ;
+                                                                         ;
+                                                                         
+                                              .org 1000                  
+000003e8  0000001000  08400bb8                ld r1, op1                 
+000003ec  0000001004  08800bbc                ld r2, op2                 
+000003f0  0000001008  08c00bc0                ld r3, operator            
+000003f4  0000001012  310007cc                lar r4, result             
+000003f8  0000001016  320000a4                lar r8, end                
+000003fc  0000001020  3280004c                lar r10, multiplication    
+00000400  0000001024  33000070                lar r12, division          
+                                                                         
+00000404  0000001028  34400058                lar r17, prep              
+00000408  0000001032  3340001c                lar r13, aa                
+0000040c  0000001036  33800024                lar r14, bb                
+00000410  0000001040  33c00040                lar r15, loop1             
+00000414  0000001044  34000054                lar r16, store             
+                                                                         
+00000418  0000001048  2d000000                la r20, 0                  
+0000041c  0000001052  401a1004                brpl r13, r1               
+00000420  0000001056  78401000                neg r1, r1                 
+00000424  0000001060  6d280001                addi r20, r20, 1           
+                                                                         
+00000428  0000001064  401c2004  aa:           brpl r14, r2               ;check the sign of the second operand
+0000042c  0000001068  78802000                neg r2, r2                 ;if the signe is negative, make it positive
+00000430  0000001072  6d280001                addi r20, r20, 1           
+                                                                         
+00000434  0000001076  6d820000  bb:           addi r22, r1, 0            
+                                                                         
+                                                                         
+                                                                         
+00000438  0000001080  6947ffd6                addi r5, r3, -42           
+0000043c  0000001084  40145002                brzr r10, r5               
+00000440  0000001088  6947ffd1                addi r5, r3, -47           
+00000444  0000001092  40185002                brzr r12, r5               
+00000448  0000001096  40100001                br r8                      
+                                                                         
+0000044c  0000001100            multiplication:                             
+                                                                         
+                                                                         ;la	r6,0
+0000044c  0000001100  40101002                brzr r8, r1                
+00000450  0000001104  40102002                brzr r8, r2                ;go to end if either operand is zero
+                                                                         
+00000454  0000001108  61846000  loop1:        add r6, r2, r6             
+00000458  0000001112  6dadffff                addi r22, r22, -1          ;decremnt the value of r22
+0000045c  0000001116  401f6003                brnz r15, r22              ;if r22's value is nonzero go to loop1
+                                                                         ;br	r17
+                                                                         
+00000460  0000001120  6d29ffff  prep:         addi r20, r20, -1          
+00000464  0000001124  40214003                brnz r16, r20              
+00000468  0000001128  79806000                neg r6, r6                 ;CODE HERE
+0000046c  0000001132  19880000  store:        st r6, 0(r4)               ;CODE HERE
+00000470  0000001136  40100001                br r8                      ;CODE HERE
+                                                                         
+                                                                         
+00000474  0000001140            division:                                
+00000474  0000001140  7d816000                neg r22, r22               
+                                                                         ;lar	r30,loop2
+00000478  0000001144  37c0000c                lar r31, valid             ;valid means operand 2 is not zero
+0000047c  0000001148  403e2003                brnz r31, r2               
+00000480  0000001152  2981ffff                la r6, -1                  ;value to store if operand 2 is zero
+00000484  0000001156  40200001                br r16                     
+                                                                         
+                                                                         
+00000488  0000001160  698c0001  valid:        addi r6, r6, 1             
+0000048c  0000001164  65ac2000                add r22, r22, r2           
+00000490  0000001168  40236002                brzr r17, r22              
+00000494  0000001172  403f6005                brmi r31, r22              
+00000498  0000001176  698dffff                addi r6, r6, -1            
+0000049c  0000001180  40220001                br r17                     
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+000004a0  0000001184  f8000000  end:          stop                       
+                                              .org 3000                  
+00000bb8  0000003000  fffffff8  op1:          .dc -8                     ;any integer value
+00000bbc  0000003004  00000000  op2:          .dc 0                      ;any integer value
+                                                                         
+00000bc0  0000003008            operator:                                
+00000bc0  0000003008  0000002a                .dc "*"                    ;either '*' or '/'
+                                                                         
+                                                                         
+00000bc4  0000003012            result:       .dw 1                      ;storage for result
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+
+--- Symbol Table ---
+op1: 3000
+aa: 1064
+valid: 1160
+operator: 3008
+end: 1184
+prep: 1120
+division: 1140
+bb: 1076
+loop1: 1108
+store: 1132
+multiplication: 1100
+result: 3012
+op2: 3004

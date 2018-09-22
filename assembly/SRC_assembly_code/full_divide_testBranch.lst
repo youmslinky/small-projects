@@ -1,0 +1,61 @@
+(SRCTools Version 3.1.1)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                                                         ;r29 is for the brl return address
+                                                                         
+00000000  0000000000  2fc00050                la r31, mult               ;multiply subroutine jump location
+00000004  0000000004  2f800020                la r30, div                ;divide subroutine jump location
+00000008  0000000008  2f0003f0                la r28, quotient           ;location where quotient will be stored
+0000000c  0000000012  2ec00068                la r27, end                
+                                                                         
+                                                                         
+                                iter:         .equ 30                    ;number of digits to calculate out
+                                                                         
+00000010  0000000016  2940001e                la r5, iter                
+00000014  0000000020  2900000a                la r4, 10                  ;10 factor for digit shift
+                                                                         
+00000018  0000000024  28000163                la r0, 355                 ;dividend
+0000001c  0000000028  28400071                la r1, 113                 ;divisor
+                                                                         
+                                                                         
+                                                                         
+00000020  0000000032  70001000  div:          sub r0, r0, r1             ;subtract divisor from dividend
+00000024  0000000036  68840001                addi r2, r2, 1             ;increment quotient
+00000028  0000000040  40360002                brzr r27, r0               ;jump if there is no remainder
+0000002c  0000000044  403c0004                brpl r30, r0               ;keep subtracting until number is negative
+                                                                         
+00000030  0000000048  6885ffff                addi r2, r2, -1            
+00000034  0000000052  60001000                add r0, r0, r1             
+                                                                         
+00000038  0000000056  188603f0                st r2, quotient(r3)        ;store current quotient result in memory
+0000003c  0000000060  68c60004                addi r3, r3, 4             ;increment quotient storage location
+00000040  0000000064  694bffff                addi r5, r5, -1            ;decrement decimal place counter
+00000044  0000000068  40365002                brzr r27, r5               ;if we have done all the decimal places we need to do, go to end
+                                                                         
+00000048  0000000072  28800000                la r2, 0                   ;clear r2
+                                                                         
+                                                                         
+                                                                         ;brlnz r29,r5,r6	
+                                                                         
+                                                                         
+                                                                         
+                                                                         ;multiply r0 and r4, result goes in r0
+                                                                         
+0000004c  0000000076  2900000a                la r4, 10                  ;load 10 for digit shift
+00000050  0000000080  60840000  mult:         add r2, r2, r0             ;add factor 2 to r2
+00000054  0000000084  6909ffff                addi r4, r4, -1            ;decrement factor 1
+00000058  0000000088  403e4003                brnz r31, r4               ;keep adding until factor 1 is 0
+0000005c  0000000092  68040000                addi r0, r2, 0             ;put result into r0 for next division
+00000060  0000000096  28800000                la r2, 0                   ;clear r2
+00000064  0000000100  403c0001                br r30                     
+                                                                         
+00000068  0000000104  f8000000  end:          stop                       
+                                                                         
+                                              .org 1008                  
+000003f0  0000001008            quotient:     .dw 1                      
+
+--- Symbol Table ---
+end: 104
+iter: 30
+quotient: 1008
+mult: 80
+div: 32

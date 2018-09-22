@@ -1,0 +1,32 @@
+(SRCTools Version 3.1.1)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                              .org 2000000               
+001e8480  0002000000  37c00010                lar r31, loop              
+001e8484  0002000004  37800018                lar r30, even              
+001e8488  0002000008  37400024                lar r29, end               
+                                                                         
+                                                                         
+                                                                         
+001e848c  0002000012  2800000a                la r0, 10                  
+001e8490  0002000016  30617bc5                lar r1, 89                 
+                                                                         
+                                                                         
+                                                                         
+001e8494  0002000020  a8c00001  loop:         andi r3, r0, 1             ;is odd?
+001e8498  0002000024  403c3002                brzr r30, r3               
+001e849c  0002000028  60841000                add r2, r2, r1             ;it is odd, add to sum
+001e84a0  0002000032  d0000001  even:         shr r0, r0, 1              ;interger half number
+001e84a4  0002000036  403a0002                brzr r29, r0               
+001e84a8  0002000040  e0420001                shl r1, r1, 1              ;double number
+001e84ac  0002000044  403e0001                br r31                     
+                                                                         
+001e84b0  0002000048  f8000000  end:          stop                       
+                                                                         
+                                              .org 2000                  
+000007d0  0000002000            inter:        .dw 1                      
+
+--- Symbol Table ---
+inter: 2000
+end: 2000048
+loop: 2000020
+even: 2000032

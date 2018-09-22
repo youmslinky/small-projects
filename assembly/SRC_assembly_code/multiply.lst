@@ -1,0 +1,19 @@
+(SRCTools Version 3.1.1)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                                                         ;r2 will be for quotient
+                                                                         ;r3 will be for remainder
+                                                                         
+00000000  0000000000  2fc0000c                la r31, loop               ;loop jump location
+                                                                         
+                                                                         
+00000004  0000000004  28000014                la r0, 20                  ;factor 1
+00000008  0000000008  28400005                la r1, 5                   ;factor 2
+                                                                         
+                                                                         
+                                                                         
+0000000c  0000000012  60841000  loop:         add r2, r2, r1             ;add factor 2 to r2
+00000010  0000000016  6801ffff                addi r0, r0, -1            ;decrement factor 1
+00000014  0000000020  403e0003                brnz r31, r0               ;keep adding until factor 1 is 0
+
+--- Symbol Table ---
+loop: 12
