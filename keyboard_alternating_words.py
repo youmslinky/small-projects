@@ -16,8 +16,13 @@ myWords = list(filter(myRe.search,word_list))
 print((' '.join(myWords)))
 print()
 
-secureRandom = random.SystemRandom()
-p=''
-for i in range(5):
-	p += secureRandom.choice(myWords) + ' '
-print(p)
+while True:
+    secureRandom = random.SystemRandom()
+    p=''
+    for i in range(5):
+            p += secureRandom.choice(myWords) + ' '
+    print(p)
+    n = input()
+    if n != '':
+        break
+
