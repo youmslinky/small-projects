@@ -1,9 +1,15 @@
 CC=g++
-CFLAGS=-c -Wall
+#CFLAGS=-Wall 
+#-fdiagnostics-color
 
-all: e*.cc
+SRCS = $(wildcard *.cc)
 
-main: main.o primes.o
-	$(CC) -o main main.o primes.o
+PROGS = $(patsubst %.cc,%,$(SRCS))
+
+all: $(PROGS)
+
+%: %.c
+	$(CC) $(CFLAGS)  -o $@ $<
+
 clean:
-	rm -r *.o main
+	rm -f $(PROGS)
