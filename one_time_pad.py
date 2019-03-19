@@ -1,6 +1,7 @@
 import random
 import string
-charList = string.printable
+#charList = string.printable #all printable characters (has newline, carriage return, so not so good)
+charList = string.ascii_lowercase
 charListLen = len(charList)
 dic = dict(zip(charList,range(charListLen)))
 def otpad(l):
@@ -10,7 +11,7 @@ def otpad(l):
 def encrypt(msg,pad):
 	ciphertext = ''
 	for m,p in zip(msg,pad):
-		cc = charList[int(dic[m]+dic[p]) % 26]
+		cc = charList[int(dic[m]+dic[p]) % charListLen]
 		ciphertext += cc
 		#print(m,' ',p,' ',cc)
 	return ciphertext
@@ -18,13 +19,13 @@ def encrypt(msg,pad):
 def decrypt(msg,pad):
 	cleartext = ''
 	for m,p in zip(msg,pad):
-		cc = charList[int(dic[m]-dic[p]) % 26]
+		cc = charList[int(dic[m]-dic[p]) % charListLen]
 		cleartext += cc
 		#print(m,' ',p,' ',cc)
 	return cleartext
 
 pad = otpad(100)
-message = "hello"
+message = "hellothere"
 cipherText = encrypt(message,pad)
 print('ciphertext: ',cipherText)
 clearText = decrypt(cipherText,pad)
