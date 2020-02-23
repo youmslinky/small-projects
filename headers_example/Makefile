@@ -14,4 +14,4 @@ main: main.o primes.o
 #primes.o: primes.cc
 #	$(CC) $(CFLAGS) -c primes.cc
 clean:
-	rm -r *.o main
+	rm -fr *.o main
