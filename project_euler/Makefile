@@ -1,15 +1,16 @@
 CC=g++
-#CFLAGS=-Wall 
+CFLAGS=-Wall -g
 #-fdiagnostics-color
 
 SRCS = $(wildcard *.cc)
 
 PROGS = $(patsubst %.cc,%,$(SRCS))
+# PROGS = $(SRCS:.cc=.out)
 
 all: $(PROGS)
 
-%: %.c
-	$(CC) $(CFLAGS)  -o $@ $<
+%: %.cc
+	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
 	rm -f $(PROGS)
