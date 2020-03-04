@@ -34,6 +34,7 @@ int main(){
     for(long i=0;i<longest.size();i++){
         cout << longest[i] << ' ';
     }
+	cout << endl;
 
     return 0;
 }
