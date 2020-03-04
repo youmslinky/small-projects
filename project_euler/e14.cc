@@ -19,7 +19,6 @@ vector<long> collatz(long n){
 
 int main(){
     vector<long> longest;
-    long highest = 1;
     long i=13;
     while(i<1000000){
         vector<long> can = collatz(i);
@@ -31,7 +30,7 @@ int main(){
         i++;
     }
 
-    for(long i=0;i<longest.size();i++){
+    for(unsigned long i=0;i<longest.size();i++){
         cout << longest[i] << ' ';
     }
 	cout << endl;

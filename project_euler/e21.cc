@@ -21,7 +21,7 @@ vector<long> divisors(long n){
 }
 long sumVec(vector<long> v){
     long out=0;
-    for(int i=0;i<v.size();i++){
+    for(unsigned long i=0;i<v.size();i++){
         out+=v[i];
     }
     return out;

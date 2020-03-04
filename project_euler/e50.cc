@@ -31,15 +31,13 @@ vector<bool> sieve(long long max){
 }
 
 int main(){
-    long long i;
     cout << "enter max number: ";
     //cin >> i;
     int max=1000000;
     vector<bool> p = sieve(max);
     vector<int> pri;
     //pri has the actual integer values, not just boolean
-    long long sum=0;
-    for(int i=0;i<p.size();i++){
+    for(unsigned long i=0;i<p.size();i++){
         if(p[i]){
             pri.push_back(i+2);
         }
@@ -47,9 +45,8 @@ int main(){
     vector<int> longest;
     vector<int> can;
     int highest = 0;
-    for(int i=0;i<12;i++){
+    for(unsigned long i=0;i<12;i++){
         cout << "i: " << i << endl;
-        int sum = 0;
         int j=0;
         for(int sum=0;sum<max && i+j<pri.size();sum+=pri[i+j]){
             can.push_back(pri[i+j]);
@@ -63,7 +60,7 @@ int main(){
         j=0;
         can.clear();
     }
-    for(int i=0;i<longest.size();i++){
+    for(unsigned long i=0;i<longest.size();i++){
         cout << longest[i] << ' ';
     }
     cout << endl;

@@ -34,7 +34,7 @@ int main(){
     long i=2;
     vector<long> longest;
     long mostFac=0;
-    long lenLongest=longest.size();
+    unsigned long lenLongest=longest.size();
     while(lenLongest < 1000){
         vector<long> can = divisors(tri);
         if(can.size()>lenLongest){

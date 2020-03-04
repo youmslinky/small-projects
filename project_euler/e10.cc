@@ -36,7 +36,7 @@ int main(){
     cin >> i;
     vector<bool> p = sieve(i);
     long long sum=0;
-    for(int i=0;i<p.size();i++){
+    for(unsigned long i=0;i<p.size();i++){
         if(p[i]){
             //cout << i+2 << ' ';
             sum += i+2;

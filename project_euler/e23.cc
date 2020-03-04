@@ -21,7 +21,7 @@ vector<long> divisors(long n){
 }
 long sumVec(vector<long> v){
     long out=0;
-    for(int i=0;i<v.size();i++){
+    for(unsigned long i=0;i<v.size();i++){
         out+=v[i];
     }
     return out;
@@ -41,15 +41,15 @@ int main(){
         }
     }
     cout << "\n\n\n";
-    for(long i=0;i<abun.size();i++){
-        for(long j=0;j<abun.size()-i;j++){
-            long index = abun[i]+abun[i+j];
+    for(unsigned long i=0;i<abun.size();i++){
+        for(unsigned long j=0;j<abun.size()-i;j++){
+            unsigned long index = abun[i]+abun[i+j];
             if(index < notSum.size()){
                 notSum[abun[i]+abun[i+j]] = false;
             }
         }
     }
-    for(long i=0;i<notSum.size();i++){
+    for(unsigned long i=0;i<notSum.size();i++){
         if(notSum[i]){
             sum += i;
         }
