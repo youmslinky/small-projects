@@ -5,7 +5,7 @@ def anagrams(word, words):
 
 def pos(nums):
     return filter(lambda x: x>=0, nums)
-    
+
 def spin_words(sentence):
     return ' '.join(map(lambda w: w[::-1] if len(w)>=5 else w, sentence.split()))
 
@@ -20,7 +20,7 @@ def to_weird_case(string):
             else:
                 convertedList.append(c.lower())
         outList.append(''.join(convertedList))
-                
+
     return ' '.join(outList)
 
 def is_prime(num):
@@ -41,7 +41,7 @@ def num(s):
 def calc(expr):
     ex = expr.split()
     for c in ex:
-       pass 
+       pass
 def fib(n):
     out = [1,1]
     for v in range(0,n):
