@@ -1,10 +1,7 @@
-#include <vector>
-#include <math.h>
 #include "primes.h"
-using namespace std;
 
-bool isPrime(long long n){
-    for(long long i=n/2;i>1;i--){
+bool isPrime(uint64_t n){
+    for(uint64_t i=n/2;i>1;i--){
         if(n%i==0){
             return false;
         }
@@ -12,19 +9,30 @@ bool isPrime(long long n){
     return true;
 }
 
-vector<bool> sieve(long long max){
-    vector<bool> out;
-    for(long long i=2;i<=max;i++){
-        out.push_back(true);
-    }
+std::vector<bool> bool_sieve(uint64_t max){
+    std::vector<bool> out(max,true);
+    // for(uint64_t i=2;i<=max;i++){
+    //     out.push_back(true);
+    // }
     
-    for(long long i=2;i<=(long long)sqrt(max);i++){
+    for(uint64_t i=2;i<=(uint64_t)sqrt(max);i++){
         if(out[i-2]){
-            long long i2 = i*i;
-            for(long long j=i2;j<=max;j+=i){
+            uint64_t i2 = i*i;
+            for(uint64_t j=i2;j<=max;j+=i){
                 out[j-2] = false;
             }
         }
     }
     return out;
+}
+
+std::vector<uint64_t> int_sieve(uint64_t max){
+	std::vector<bool> b_sieve = bool_sieve(max);
+	std::vector<uint64_t> out;
+	for(uint64_t i=0; i<b_sieve.size()-1; ++i){
+		if(b_sieve[i]){
+			out.push_back(i+2);
+		}
+	}
+	return out;
 }
