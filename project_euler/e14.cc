@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
 
+#ifndef LENGTH
+#define LENGTH 1000000
+#endif
+
+
 using namespace std;
 
 vector<long> collatz(long n){
@@ -20,7 +25,7 @@ vector<long> collatz(long n){
 int main(){
     vector<long> longest;
     long i=13;
-    while(i<1000000){
+    while(i<LENGTH){
         vector<long> can = collatz(i);
         if(can.size() > longest.size()){
             longest = can;

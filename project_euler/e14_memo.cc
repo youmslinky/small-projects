@@ -3,6 +3,10 @@
 #include <unordered_map>
 #include <cstdint>
 
+#ifndef LENGTH
+#define LENGTH 1000000
+#endif
+
 using namespace std;
 
 std::unordered_map<uint64_t, uint64_t> umap; 
@@ -46,7 +50,7 @@ int main(){
 	uint64_t i = 0;
 	uint64_t longest_i = 1;
 	uint64_t longest_length = 1;
-	while(i++<1000000){
+	while(i++<LENGTH){
 		uint64_t len = collatzLength(i);
 		if(len > longest_length){
 			longest_i = i;
