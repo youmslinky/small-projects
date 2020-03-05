@@ -10,7 +10,7 @@ PROGS = $(patsubst %.cc,%,$(SRCS))
 all: $(PROGS)
 
 %: %.cc
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) libs/primes.cc -o $@ $<
 
 clean:
 	rm -f $(PROGS)
