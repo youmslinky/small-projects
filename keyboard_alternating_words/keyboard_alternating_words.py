@@ -1,4 +1,4 @@
-from nltk.corpus import words
+#from nltk.corpus import words
 import re
 import random
 
@@ -22,6 +22,7 @@ def create_filter():
     return myRe
 
 if __name__ == "__main__":
+    #this uses nltk corpus, which is actually kinda small, so not a good idea to use
     word_list = words.words()
 
     myRe = create_filter();

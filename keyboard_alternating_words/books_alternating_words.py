@@ -31,11 +31,14 @@ with open('google-books-common-words.txt') as tsvfile:
                 if classify_left_right(word) == pattern:
                     words[pattern][word] = { 'count':int(row['count']) }
 long_words = {'rr':{},'rl':{},'lr':{},'ll':{}}
+i = 0;
 for pattern in words:
     for word in words[pattern]:
         if len(word) >= 5:
+            i += 1
             long_words[pattern][word] = words[pattern][word]
 print(json.dumps(long_words,indent=4,sort_keys=True))
+print(f"there are {i} words in long_words")
 while True:
     print(random_phrase(long_words,length=5))
     n = input()
