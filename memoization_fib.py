@@ -1,11 +1,9 @@
 import sys
 
-
-
 def fibonacci(n,fibs={}):
     #print n,len(fibs)
     #print fibs
-    eval(input())
+    # eval(input())
     if n in [0, 1]:
         return n
     elif n in fibs:
@@ -15,3 +13,5 @@ def fibonacci(n,fibs={}):
         fibs[n] = fib
         return fib
 
+for i in range(20):
+    print(fibonacci(i))
