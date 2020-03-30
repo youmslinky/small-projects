@@ -20,6 +20,7 @@ bool is_pandigital(uint64_t n){
 
 int main(){
     auto primes = int_sieve(987654321);
+    cout << "prime sieve is done" << endl;
     for (auto it : primes) {
         if(is_pandigital(it)){
             cout << it << " is pandigital*********" << endl;
