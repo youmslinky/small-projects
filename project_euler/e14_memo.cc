@@ -30,40 +30,40 @@ vector<uint64_t> collatz(uint64_t n){
 }
 
 uint64_t collatzLength(uint64_t n){
-	if(n==0 || n==1){
-		return 1;
-	}
-	if(umap.count(n) == 0){
-		// cout << n << " is NOT in the map" << endl;
+    if(n==0 || n==1){
+        return 1;
+    }
+    if(umap.count(n) == 0){
+        // cout << n << " is NOT in the map" << endl;
         if(n%2==0){
-			umap[n] = 1+collatzLength(n/2);
+            umap[n] = 1+collatzLength(n/2);
         } else {
-			umap[n] = 1+collatzLength(3*n+1);
+            umap[n] = 1+collatzLength(3*n+1);
         }
-	} else {
-		// cout << n << " IS in the map" << endl;
-	}
-	return umap[n];
+    } else {
+        // cout << n << " IS in the map" << endl;
+    }
+    return umap[n];
 }
 
 int main(){
-	uint64_t i = 0;
-	uint64_t longest_i = 1;
-	uint64_t longest_length = 1;
-	while(i++<LENGTH){
-		uint64_t len = collatzLength(i);
-		if(len > longest_length){
-			longest_i = i;
-			longest_length = len;
+    uint64_t i = 0;
+    uint64_t longest_i = 1;
+    uint64_t longest_length = 1;
+    while(i++<LENGTH){
+        uint64_t len = collatzLength(i);
+        if(len > longest_length){
+            longest_i = i;
+            longest_length = len;
             cout << i << " len: " << longest_length << endl;
-		}
-	}
+        }
+    }
     vector<uint64_t> longest = collatz(longest_i);
     for(uint64_t i=0;i<longest.size();i++){
         cout << longest[i] << ' ';
     }
-	cout << endl;
+    cout << endl;
 
-	return 0;
+    return 0;
 }
 
