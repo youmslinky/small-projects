@@ -1,8 +1,9 @@
 import sys
 
-def fibonacci(n,fibs={}):
-    #print n,len(fibs)
-    #print fibs
+
+def fibonacci(n, fibs={}):
+    # print n,len(fibs)
+    # print fibs
     # eval(input())
     if n in [0, 1]:
         return n
@@ -12,6 +13,7 @@ def fibonacci(n,fibs={}):
         fib = fibonacci(n - 1) + fibonacci(n - 2)
         fibs[n] = fib
         return fib
+
 
 for i in range(20):
     print(fibonacci(i))

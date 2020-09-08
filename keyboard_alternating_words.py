@@ -4,25 +4,24 @@ import random
 
 word_list = words.words()
 
-left = 'qwertasdfgzxcvb'
-right = 'yuiophjklnm'
+left = "qwertasdfgzxcvb"
+right = "yuiophjklnm"
 
 
-myRe = re.compile('^(?:[{0}][{1}])+[{0}]?$|^(?:[{1}][{0}])+[{1}]?$'.format(left,right))
+myRe = re.compile("^(?:[{0}][{1}])+[{0}]?$|^(?:[{1}][{0}])+[{1}]?$".format(left, right))
 
-myWords = list(filter(myRe.search,word_list))
+myWords = list(filter(myRe.search, word_list))
 
 
-print((' '.join(myWords)))
+print((" ".join(myWords)))
 print()
 
 while True:
     secureRandom = random.SystemRandom()
-    p=''
+    p = ""
     for i in range(5):
-            p += secureRandom.choice(myWords) + ' '
+        p += secureRandom.choice(myWords) + " "
     print(p)
     n = input()
-    if n != '':
+    if n != "":
         break
-

@@ -1,16 +1,18 @@
 import random as r
 import math as m
-#bool(r.getrandbits(1))
-#r.uniform(-1,1)
 
-def run_game(pattern1,pattern2):
+# bool(r.getrandbits(1))
+# r.uniform(-1,1)
+
+
+def run_game(pattern1, pattern2):
     pass
-	
+
 
 flipsTotal = 0
 while flipsTotal < 10:
-	flipsTotal += 1
-	if bool(r.getrandbits(1)):
-		print('h')
-	else:
-		print('t')
+    flipsTotal += 1
+    if bool(r.getrandbits(1)):
+        print("h")
+    else:
+        print("t")
