@@ -63,10 +63,10 @@ def factors(n):
 def is_palindrome(n):
     n = list(str(n))
     if len(n)%2==0:
-        front = n[:len(n)/2]
+        front = n[:len(n)//2]
     else:
-        front = n[:len(n)/2+1]
-    back = n[len(n)/2:]
+        front = n[:len(n)//2+1]
+    back = n[len(n)//2:]
     return front == list(reversed(back))
 
 def divisors(n):
