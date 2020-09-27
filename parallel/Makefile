@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O3 -Wall -pthread
+CFLAGS=-g -Wall -pthread
 #-fdiagnostics-color
 
 SRCS = $(wildcard *.cc)
