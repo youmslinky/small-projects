@@ -1,3 +1,6 @@
+#ignore tag files
+tags
+
 #ignore vim swap files
 *.swp
 
